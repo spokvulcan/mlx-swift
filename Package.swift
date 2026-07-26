@@ -275,6 +275,9 @@ let cmlx = Target.target(
         "mlx/mlx/distributed/jaccl/mesh.cpp",
         "mlx/mlx/distributed/jaccl/ring.cpp",
         "mlx/mlx/distributed/jaccl/utils.cpp",
+        // vendored jaccl transport sources (mlx > 0.31.1); its headers are not
+        // on the include path and distributed support is not built here
+        "mlx/mlx/distributed/jaccl/lib",
     ],
     cSettings: [
         .headerSearchPath("mlx"),
