@@ -1,6 +1,7 @@
 [submodule "submodules/mlx"]
 	path = Source/Cmlx/mlx
-	url = https://github.com/ml-explore/mlx
+	url = https://github.com/spokvulcan/mlx
+	branch = pin-tesseract-2026-07-27
 [submodule "submodules/mlx-c"]
 	path = Source/Cmlx/mlx-c
 	url = https://github.com/ml-explore/mlx-c
