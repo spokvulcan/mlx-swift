@@ -28,3 +28,20 @@ public func dynamicSliceUpdated(
         &result, array.ctx, update.ctx, start.ctx, axes32, axes32.count, stream.ctx)
     return MLXArray(result)
 }
+
+/// Read a slice of `array` starting at dynamic (array-valued) indices
+/// (tesseract C8). Wraps `mlx_slice_dynamic`: `start` is an int array with
+/// one element per entry in `axes`, `sliceSize` the full output shape. The
+/// result is a fresh contiguous array, so a window whose position is a lazy
+/// scalar copies once instead of gathering.
+public func dynamicSlice(
+    _ array: MLXArray, start: MLXArray, axes: [Int], sliceSize: [Int],
+    stream: StreamOrDevice = .default
+) -> MLXArray {
+    let axes32 = axes.map(Int32.init)
+    let size32 = sliceSize.map(Int32.init)
+    var result = mlx_array_new()
+    mlx_slice_dynamic(
+        &result, array.ctx, start.ctx, axes32, axes32.count, size32, size32.count, stream.ctx)
+    return MLXArray(result)
+}
